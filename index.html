@@ -1,262 +1,116 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>無料数秘術占い</title>
-
-<style>
-body{
-  margin:0;
-  padding:20px;
-  text-align:center;
-  font-family:sans-serif;
-  background:linear-gradient(#8fe9ff,#67c4ff,#4b84ff);
-}
-
-.box{
-  max-width:700px;
-  margin:auto;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-}
-
-h1{
-  color:#6a0dad;
-}
-
-input{
-  width:80px;
-  padding:10px;
-  font-size:20px;
-  text-align:center;
-}
-
-button{
-  margin-top:20px;
-  padding:12px 30px;
-  font-size:18px;
-  background:#6a0dad;
-  color:white;
-  border:none;
-  border-radius:10px;
-}
-
-#result{
-  margin-top:30px;
-  background:#f5f5f5;
-  padding:20px;
-  border-radius:15px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box">
-
-<h1>🔮無料数秘術占い🔮</h1>
-
-<p>生年月日を入力してください</p>
-
-<input id="year" placeholder="1990">年
-<input id="month" placeholder="5">月
-<input id="day" placeholder="15">日
-
-<br>
-
-<button onclick="fortune()">占う</button>
-
-<div id="result"></div>
-
-</div>
-
 <script>
-    function fortune(){
+function fortune() {
 
-let year = document.getElementById("year").value;
-let month = document.getElementById("month").value;
-let day = document.getElementById("day").value;
+    let year = document.getElementById("year").value;
+    let month = document.getElementById("month").value;
+    let day = document.getElementById("day").value;
 
-if(year === "" || month === "" || day === ""){
-  alert("生年月日を入力してください");
-  return;
+    if(year === "" || month === "" || day === ""){
+        alert("生年月日を入力してください");
+        return;
+    }
+
+    let numbers = year + month + day;
+
+    let sum = 0;
+
+    for(let i = 0; i < numbers.length; i++){
+        sum += Number(numbers[i]);
+    }
+
+    while(sum > 9){
+        let temp = 0;
+        let str = String(sum);
+
+        for(let i = 0; i < str.length; i++){
+            temp += Number(str[i]);
+        }
+
+        sum = temp;
+    }
+
+    let message = "";
+    let love = "";
+    let work = "";
+
+    switch(sum){
+
+        case 1:
+            message = "リーダー気質。新しい道を切り開く力があります。";
+            love = "好きになると一直線。情熱的で頼られる恋愛をします。";
+            work = "責任感が強く、リーダーとして活躍できます。";
+            break;
+
+        case 2:
+            message = "思いやりがあり、人との調和を大切にします。";
+            love = "優しく相手を支える恋愛タイプです。";
+            work = "チームワークを大切にし、周囲から信頼されます。";
+            break;
+
+        case 3:
+            message = "創造力が豊かで、人を楽しませる才能があります。";
+            love = "明るく楽しい恋愛を好みます。";
+            work = "アイデア力が高く、企画やクリエイティブ分野に向いています。";
+            break;
+
+        case 4:
+            message = "努力家でコツコツ積み上げる力があります。";
+            love = "一途で誠実。長く続く恋愛を求めます。";
+            work = "真面目で着実に成果を出すタイプです。";
+            break;
+
+        case 5:
+            message = "自由を愛し、変化を楽しめるタイプです。";
+            love = "刺激的な恋愛を好みます。";
+            work = "行動力があり、新しい環境にもすぐ適応できます。";
+            break;
+
+        case 6:
+            message = "愛情深く、人を支えることが得意です。";
+            love = "家庭的で愛情豊かな恋愛をします。";
+            work = "面倒見が良く、教育やサポート役で力を発揮します。";
+            break;
+
+        case 7:
+            message = "探究心が強く、深い知識を求めます。";
+            love = "慎重ですが、心を開くと深い愛情を注ぎます。";
+            work = "分析力が高く、専門職や研究職に向いています。";
+            break;
+
+        case 8:
+            message = "成功への意欲が強く、行動力があります。";
+            love = "頼もしく、相手を引っ張る恋愛をします。";
+            work = "経営や営業など成果を求める仕事で活躍できます。";
+            break;
+
+        case 9:
+            message = "優しく包容力があり、多くの人に慕われます。";
+            love = "相手を受け入れる大きな愛を持っています。";
+            work = "人助けや社会貢献につながる仕事に向いています。";
+            break;
+    }
+
+    let fortunes = [
+        "大吉🎉",
+        "中吉😊",
+        "小吉✨",
+        "吉🍀",
+        "末吉🌟"
+    ];
+
+    let today = fortunes[Math.floor(Math.random() * fortunes.length)];
+
+    document.getElementById("result").innerHTML =
+        "<h2>あなたの運命数は " + sum + "</h2>" +
+        "<p>" + message + "</p>" +
+
+        "<h3>💕 恋愛での性格</h3>" +
+        "<p>" + love + "</p>" +
+
+        "<h3>💼 仕事での性格</h3>" +
+        "<p>" + work + "</p>" +
+
+        "<h3>🎴 今日の運勢</h3>" +
+        "<p>" + today + "</p>";
 }
-
-let numbers = year + month + day;
-let sum = 0;
-
-for(let i = 0; i < numbers.length; i++){
-  sum += Number(numbers[i]);
-}
-
-while(sum > 9){
-  let temp = 0;
-  let str = String(sum);
-
-  for(let i = 0; i < str.length; i++){
-    temp += Number(str[i]);
-  }
-
-  sum = temp;
-}
-
-let message = "";
-let love = "";
-let work = "";
-switch(sum){
-
-case 1:
-message = "リーダー気質。新しい道を切り開く力があります。";
-break;
-
-case 2:
-message = "思いやりがあり、人との調和を大切にします。";
-break;
-
-case 3:
-message = "創造力が豊かで、人を楽しませる才能があります。";
-break;
-
-case 4:
-message = "努力家でコツコツ積み上げる力があります。";
-break;
-
-case 5:
-message = "自由を愛し、変化を楽しめるタイプです。";
-break;
-
-case 6:
-message = "愛情深く、人を支えることが得意です。";
-break;
-
-case 7:
-message = "探究心が強く、深い知識を求めます。";
-break;
-
-case 8:
-message = "成功への意欲が強く、行動力があります。";
-break;
-
-case 9:
-message = "優しく包容力があり、多くの人に慕われます。";
-break;
-}
-
-let fortunes = [
-"大吉 🎉",
-"中吉 😊",
-"小吉 ✨",
-"吉 🍀",
-"末吉 🌟"
-];
-
-let today = fortunes[Math.floor(Math.random() * fortunes.length)];
-
-document.getElementById("result").innerHTML =
-"<h2>あなたの運命数は " + sum + "</h2>" +
-"<p>" + message + "</p>" +
-"<h3>今日の運勢</h3>" +
-"<p>" + today + "</p>";
-
-}
-
 </script>
-
-</body>
-function fortune(){
-
-let year = document.getElementById("year").value;
-let month = document.getElementById("month").value;
-let day = document.getElementById("day").value;
-
-if(year === "" || month === "" || day === ""){
-  alert("生年月日を入力してください");
-  return;
-}
-
-let numbers = year + month + day;
-let sum = 0;
-
-for(let i = 0; i < numbers.length; i++){
-  sum += Number(numbers[i]);
-}
-
-while(sum > 9){
-  let temp = 0;
-  let str = String(sum);
-
-  for(let i = 0; i < str.length; i++){
-    temp += Number(str[i]);
-  }
-
-  sum = temp;
-}
-
-let message = "";
-
-switch(sum){
-
-case 1:
-message = "リーダー気質。新しい道を切り開く力があります。";
-break;
-
-case 2:
-message = "思いやりがあり、人との調和を大切にします。";
-break;
-
-case 3:
-message = "創造力が豊かで、人を楽しませる才能があります。";
-break;
-
-case 4:
-message = "努力家でコツコツ積み上げる力があります。";
-break;
-
-case 5:
-message = "自由を愛し、変化を楽しめるタイプです。";
-break;
-
-case 6:
-message = "愛情深く、人を支えることが得意です。";
-break;
-
-case 7:
-message = "探究心が強く、深い知識を求めます。";
-break;
-
-case 8:
-message = "成功への意欲が強く、行動力があります。";
-break;
-
-case 9:
-message = "優しく包容力があり、多くの人に慕われます。";
-break;
-}
-
-let fortunes = [
-"大吉 🎉",
-"中吉 😊",
-"小吉 ✨",
-"吉 🍀",
-"末吉 🌟"
-];
-
-let today = fortunes[Math.floor(Math.random() * fortunes.length)];
-
-document.getElementById("result").innerHTML =
-"<h2>あなたの運命数は " + sum + "</h2>" +
-"<p>" + message + "</p>" +
-
-"<h3>💕恋愛での性格</h3>" +
-"<p>" + love + "</p>" +
-
-"<h3>💼仕事での性格</h3>" +
-"<p>" + work + "</p>";
-}
-
-</script>
-
-</body>
-</html>
