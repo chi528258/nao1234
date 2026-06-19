@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>無料数秘術占い</title>
+</head>
+<body>
+
+<h1>無料数秘術占い</h1>
+
+<input type="date" id="birth">
+<button onclick="fortune()">占う</button>
+
+<h2 id="result"></h2>
+
+<script>
+function fortune() {
+
+  let birth = document.getElementById("birth").value;
+
+  if(!birth){
+    alert("生年月日を入力してください");
+    return;
+  }
+
+  let nums = birth.replace(/-/g,"");
+  let sum = 0;
+
+  for(let n of nums){
+    sum += Number(n);
+  }
+
+  while(sum > 9){
+    let temp = 0;
+    for(let n of String(sum)){
+      temp += Number(n);
+    }
+    sum = temp;
+  }
+
+  document.getElementById("result").innerHTML =
+    "あなたの運命数は " + sum;
+}
+</script>
+
+</body>
+</html>
