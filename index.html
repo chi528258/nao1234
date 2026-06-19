@@ -3,58 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>無料数秘術占い</title>
 
 <style>
 body{
-    font-family: sans-serif;
-    background: #f3ecff;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-h1{
-    color: #6a0dad;
-    font-size: 42px;
+  margin:0;
+  padding:20px;
+  text-align:center;
+  font-family:sans-serif;
+  background:linear-gradient(#8fe9ff,#67c4ff,#4b84ff);
 }
 
 .box{
-    background: white;
-    max-width: 600px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  max-width:700px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+}
+
+h1{
+  color:#6a0dad;
 }
 
 input{
-    width: 100px;
-    padding: 10px;
-    font-size: 20px;
-    text-align: center;
-    margin: 5px;
+  width:80px;
+  padding:10px;
+  font-size:20px;
+  text-align:center;
 }
 
 button{
-    background: #6a0dad;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover{
-    opacity: 0.9;
+  margin-top:20px;
+  padding:12px 30px;
+  font-size:18px;
+  background:#6a0dad;
+  color:white;
+  border:none;
+  border-radius:10px;
 }
 
 #result{
-    margin-top: 30px;
-    font-size: 22px;
-    line-height: 1.8;
+  margin-top:30px;
+  background:#f5f5f5;
+  padding:20px;
+  border-radius:15px;
 }
 </style>
 </head>
@@ -67,11 +60,9 @@ button:hover{
 
 <p>生年月日を入力してください</p>
 
-<input type="number" id="year" placeholder="1990">年
-
-<input type="number" id="month" placeholder="5">月
-
-<input type="number" id="day" placeholder="15">日
+<input id="year" placeholder="1990">年
+<input id="month" placeholder="5">月
+<input id="day" placeholder="15">日
 
 <br>
 
@@ -82,55 +73,182 @@ button:hover{
 </div>
 
 <script>
+    function fortune(){
 
-function fortune() {
-
-const year = document.getElementById("year").value;
-const month = document.getElementById("month").value;
-const day = document.getElementById("day").value;
+let year = document.getElementById("year").value;
+let month = document.getElementById("month").value;
+let day = document.getElementById("day").value;
 
 if(year === "" || month === "" || day === ""){
-    alert("生年月日を入力してください");
-    return;
+  alert("生年月日を入力してください");
+  return;
 }
 
 let numbers = year + month + day;
-
 let sum = 0;
 
 for(let i = 0; i < numbers.length; i++){
-    sum += Number(numbers[i]);
+  sum += Number(numbers[i]);
 }
 
 while(sum > 9){
-    let temp = 0;
+  let temp = 0;
+  let str = String(sum);
 
-    let str = String(sum);
+  for(let i = 0; i < str.length; i++){
+    temp += Number(str[i]);
+  }
 
-    for(let i = 0; i < str.length; i++){
-        temp += Number(str[i]);
-    }
-
-    sum = temp;
+  sum = temp;
 }
 
-const messages = {
-1: "リーダー気質。新しい道を切り開く力があります。",
-2: "思いやりがあり、人との調和を大切にします。",
-3: "創造力が豊かで、人を楽しませる才能があります。",
-4: "努力家でコツコツ積み上げる力があります。",
-5: "自由を愛し、変化を楽しめるタイプです。",
-6: "愛情深く、人を支えることが得意です。",
-7: "探究心が強く、深い知識を求めます。",
-8: "成功への意欲が強く、行動力があります。",
-9: "優しく包容力があり、多くの人に慕われます。"
-};
+let message = "";
+
+switch(sum){
+
+case 1:
+message = "リーダー気質。新しい道を切り開く力があります。";
+break;
+
+case 2:
+message = "思いやりがあり、人との調和を大切にします。";
+break;
+
+case 3:
+message = "創造力が豊かで、人を楽しませる才能があります。";
+break;
+
+case 4:
+message = "努力家でコツコツ積み上げる力があります。";
+break;
+
+case 5:
+message = "自由を愛し、変化を楽しめるタイプです。";
+break;
+
+case 6:
+message = "愛情深く、人を支えることが得意です。";
+break;
+
+case 7:
+message = "探究心が強く、深い知識を求めます。";
+break;
+
+case 8:
+message = "成功への意欲が強く、行動力があります。";
+break;
+
+case 9:
+message = "優しく包容力があり、多くの人に慕われます。";
+break;
+}
+
+let fortunes = [
+"大吉 🎉",
+"中吉 😊",
+"小吉 ✨",
+"吉 🍀",
+"末吉 🌟"
+];
+
+let today = fortunes[Math.floor(Math.random() * fortunes.length)];
 
 document.getElementById("result").innerHTML =
-`
-<h2>あなたの運命数は ${sum}</h2>
-<p>${messages[sum]}</p>
-`;
+"<h2>あなたの運命数は " + sum + "</h2>" +
+"<p>" + message + "</p>" +
+"<h3>今日の運勢</h3>" +
+"<p>" + today + "</p>";
+
+}
+
+</script>
+
+</body>
+function fortune(){
+
+let year = document.getElementById("year").value;
+let month = document.getElementById("month").value;
+let day = document.getElementById("day").value;
+
+if(year === "" || month === "" || day === ""){
+  alert("生年月日を入力してください");
+  return;
+}
+
+let numbers = year + month + day;
+let sum = 0;
+
+for(let i = 0; i < numbers.length; i++){
+  sum += Number(numbers[i]);
+}
+
+while(sum > 9){
+  let temp = 0;
+  let str = String(sum);
+
+  for(let i = 0; i < str.length; i++){
+    temp += Number(str[i]);
+  }
+
+  sum = temp;
+}
+
+let message = "";
+
+switch(sum){
+
+case 1:
+message = "リーダー気質。新しい道を切り開く力があります。";
+break;
+
+case 2:
+message = "思いやりがあり、人との調和を大切にします。";
+break;
+
+case 3:
+message = "創造力が豊かで、人を楽しませる才能があります。";
+break;
+
+case 4:
+message = "努力家でコツコツ積み上げる力があります。";
+break;
+
+case 5:
+message = "自由を愛し、変化を楽しめるタイプです。";
+break;
+
+case 6:
+message = "愛情深く、人を支えることが得意です。";
+break;
+
+case 7:
+message = "探究心が強く、深い知識を求めます。";
+break;
+
+case 8:
+message = "成功への意欲が強く、行動力があります。";
+break;
+
+case 9:
+message = "優しく包容力があり、多くの人に慕われます。";
+break;
+}
+
+let fortunes = [
+"大吉 🎉",
+"中吉 😊",
+"小吉 ✨",
+"吉 🍀",
+"末吉 🌟"
+];
+
+let today = fortunes[Math.floor(Math.random() * fortunes.length)];
+
+document.getElementById("result").innerHTML =
+"<h2>あなたの運命数は " + sum + "</h2>" +
+"<p>" + message + "</p>" +
+"<h3>今日の運勢</h3>" +
+"<p>" + today + "</p>";
 
 }
 
