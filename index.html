@@ -3,131 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>無料数秘術占い</title>
 
 <style>
-body {
+body{
     font-family: sans-serif;
-    background-color: #f5f0ff;
+    background: #f3ecff;
     text-align: center;
-    padding: 30px;
+    padding: 50px 20px;
 }
 
-h1 {
+h1{
     color: #6a0dad;
+    font-size: 42px;
 }
 
-input {
-    width: 80px;
+.box{
+    background: white;
+    max-width: 600px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+input{
+    width: 100px;
     padding: 10px;
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     margin: 5px;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    background-color: #6a0dad;
+button{
+    background: #6a0dad;
     color: white;
     border: none;
+    padding: 12px 30px;
+    font-size: 20px;
     border-radius: 8px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
-#result {
+button:hover{
+    opacity: 0.9;
+}
+
+#result{
     margin-top: 30px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 500px;
-    margin: 30px auto;
+    font-size: 22px;
+    line-height: 1.8;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🔮 無料数秘術占い 🔮</h1>
+<div class="box">
+
+<h1>🔮無料数秘術占い🔮</h1>
 
 <p>生年月日を入力してください</p>
 
-<input type="text" id="year" placeholder="1990"> 年
-<input type="text" id="month" placeholder="5"> 月
-<input type="text" id="day" placeholder="15"> 日
+<input type="number" id="year" placeholder="1990">年
 
-<br><br>
+<input type="number" id="month" placeholder="5">月
+
+<input type="number" id="day" placeholder="15">日
+
+<br>
 
 <button onclick="fortune()">占う</button>
 
 <div id="result"></div>
 
+</div>
+
 <script>
+
 function fortune() {
 
-    const year = document.getElementById("year").value.trim();
-    const month = document.getElementById("month").value.trim();
-    const day = document.getElementById("day").value.trim();
+const year = document.getElementById("year").value;
+const month = document.getElementById("month").value;
+const day = document.getElementById("day").value;
 
-    if (year === "" || month === "" || day === "") {
-        alert("生年月日を入力してください");
-        return;
-    }
-
-    let numbers = year + month + day;
-    let sum = 0;
-
-    for (let i = 0; i < numbers.length; i++) {
-        sum += Number(numbers[i]);
-    }
-
-    while (sum > 9) {
-        let temp = 0;
-        let str = String(sum);
-
-        for (let i = 0; i < str.length; i++) {
-            temp += Number(str[i]);
-        }
-
-        sum = temp;
-    }
-
-    let message = "";
-
-    switch (sum) {
-        case 1:
-            message = "リーダー気質。新しい道を切り開く力があります。";
-            break;
-        case 2:
-            message = "思いやりがあり、人との調和を大切にします。";
-            break;
-        case 3:
-            message = "創造力が豊かで、人を楽しませる才能があります。";
-            break;
-        case 4:
-            message = "努力家でコツコツ積み上げる力があります。";
-            break;
-        case 5:
-            message = "自由を愛し、変化を楽しめるタイプです。";
-            break;
-        case 6:
-            message = "愛情深く、人を支えることが得意です。";
-            break;
-        case 7:
-            message = "探究心が強く、深い知識を求めます。";
-            break;
-        case 8:
-            message = "成功への意欲が強く、行動力があります。";
-            break;
-        case 9:
-            message = "優しく包容力があり、多くの人に慕われます。";
-            break;
-    }
-
-    document.getElementById("result").innerHTML =
-        "<h2>あなたの運命数は " + sum + "</h2>" +
-        "<p>" + message + "</p>";
+if(year === "" || month === "" || day === ""){
+    alert("生年月日を入力してください");
+    return;
 }
+
+let numbers = year + month + day;
+
+let sum = 0;
+
+for(let i = 0; i < numbers.length; i++){
+    sum += Number(numbers[i]);
+}
+
+while(sum > 9){
+    let temp = 0;
+
+    let str = String(sum);
+
+    for(let i = 0; i < str.length; i++){
+        temp += Number(str[i]);
+    }
+
+    sum = temp;
+}
+
+const messages = {
+1: "リーダー気質。新しい道を切り開く力があります。",
+2: "思いやりがあり、人との調和を大切にします。",
+3: "創造力が豊かで、人を楽しませる才能があります。",
+4: "努力家でコツコツ積み上げる力があります。",
+5: "自由を愛し、変化を楽しめるタイプです。",
+6: "愛情深く、人を支えることが得意です。",
+7: "探究心が強く、深い知識を求めます。",
+8: "成功への意欲が強く、行動力があります。",
+9: "優しく包容力があり、多くの人に慕われます。"
+};
+
+document.getElementById("result").innerHTML =
+`
+<h2>あなたの運命数は ${sum}</h2>
+<p>${messages[sum]}</p>
+`;
+
+}
+
 </script>
 
 </body>
