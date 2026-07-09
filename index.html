@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>無料数秘術占い</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🔮 無料数秘術占い 🔮</h1>
+
+<p>あなたの運命数を診断します</p>
+
+<div class="row">
+<input type="number" id="year" placeholder="1990">
+<span>年</span>
+</div>
+
+<div class="row">
+<input type="number" id="month" placeholder="5">
+<span>月</span>
+</div>
+
+<div class="row">
+<input type="number" id="day" placeholder="15">
+<span>日</span>
+</div>
+
+<button onclick="fortune()">
+占う
+</button>
+
+<div id="result">
+ここに診断結果が表示されます。
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
