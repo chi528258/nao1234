@@ -1,1 +1,315 @@
+/* ===================================
+   無料数秘術占い
+   style.css ①
+=================================== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+    background:linear-gradient(180deg,#b8d8ff,#f6d6ff,#fff5ff);
+    position:relative;
+}
+
+/* 背景 */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:url("https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1800&auto=format&fit=crop") center/cover;
+    opacity:.35;
+    animation:skyMove 60s linear infinite;
+    z-index:-3;
+}
+
+@keyframes skyMove{
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* キラキラ */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+    radial-gradient(white 1px,transparent 2px),
+    radial-gradient(#ffe8ff 2px,transparent 3px),
+    radial-gradient(#fff 1px,transparent 2px);
+
+    background-size:
+    160px 160px,
+    230px 230px,
+    120px 120px;
+
+    animation:sparkle 18s linear infinite;
+    opacity:.7;
+    z-index:-2;
+}
+
+@keyframes sparkle{
+
+0%{
+background-position:0 0,0 0,0 0;
+}
+
+100%{
+background-position:
+300px 300px,
+-250px 200px,
+150px -300px;
+}
+
+}
+
+/* メインカード */
+
+.container{
+
+width:min(92%,720px);
+
+background:rgba(255,255,255,.42);
+
+backdrop-filter:blur(18px);
+
+border-radius:35px;
+
+padding:45px;
+
+box-shadow:
+
+0 10px 45px rgba(130,90,190,.28),
+
+0 0 20px rgba(255,255,255,.4) inset;
+
+border:1px solid rgba(255,255,255,.55);
+
+text-align:center;
+
+}
+
+h1{
+
+font-size:48px;
+
+color:#7d4bb7;
+
+font-weight:400;
+
+margin-bottom:30px;
+
+letter-spacing:3px;
+
+}
+
+.subtitle{
+
+font-size:22px;
+
+margin-bottom:35px;
+
+color:#555;
+
+}
+/* ===========================
+   入力欄
+=========================== */
+
+.row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.row input{
+    width:180px;
+    padding:16px;
+    font-size:28px;
+    text-align:center;
+    border:none;
+    border-radius:18px;
+    background:rgba(255,255,255,.75);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    outline:none;
+    transition:.3s;
+}
+
+.row input:focus{
+    transform:scale(1.04);
+    box-shadow:0 0 18px #d4b6ff;
+}
+
+.row span{
+    font-size:30px;
+    color:#555;
+}
+
+/* ===========================
+   ボタン
+=========================== */
+
+button{
+    width:260px;
+    padding:18px;
+    border:none;
+    border-radius:999px;
+    font-size:30px;
+    color:white;
+    cursor:pointer;
+    margin-top:25px;
+    background:linear-gradient(135deg,#b66dff,#7b5cff);
+    box-shadow:0 8px 25px rgba(140,90,255,.4);
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.03);
+    box-shadow:0 15px 35px rgba(140,90,255,.5);
+}
+/* ===========================
+   診断結果
+=========================== */
+
+#result{
+    margin-top:40px;
+    padding:25px;
+    border-radius:25px;
+    background:rgba(255,255,255,.55);
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    animation:fadeIn .8s ease;
+}
+
+#result h2{
+    color:#7b4acb;
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+#result h3{
+    color:#9c5dff;
+    margin-top:20px;
+    margin-bottom:8px;
+    font-size:24px;
+}
+
+#result p{
+    color:#444;
+    font-size:20px;
+    line-height:1.9;
+}
+
+.result-image{
+    width:220px;
+    max-width:100%;
+    border-radius:20px;
+    margin:20px auto;
+    display:block;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+/* ===========================
+   スマホ対応
+=========================== */
+
+@media screen and (max-width:768px){
+
+.container{
+    width:95%;
+    padding:25px;
+    border-radius:25px;
+}
+
+h1{
+    font-size:34px;
+    letter-spacing:2px;
+}
+
+.subtitle{
+    font-size:18px;
+}
+
+.row{
+    flex-direction:column;
+    gap:10px;
+}
+
+.row input{
+    width:100%;
+    font-size:22px;
+}
+
+.row span{
+    display:none;
+}
+
+button{
+    width:100%;
+    font-size:24px;
+    padding:16px;
+}
+
+#result{
+    padding:20px;
+}
+
+#result h2{
+    font-size:28px;
+}
+
+#result h3{
+    font-size:22px;
+}
+
+#result p{
+    font-size:18px;
+}
+
+.result-image{
+    width:180px;
+}
+
+}
+
+/* ===========================
+   フッター
+=========================== */
+
+.footer{
+    margin-top:30px;
+    text-align:center;
+    color:#666;
+    font-size:14px;
+}
