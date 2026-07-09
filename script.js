@@ -1,3 +1,122 @@
-function life(y,m,d){let s=(y+m+d).toString().split("").reduce((a,b)=>a+ +b,0);while(s>9&&s!=11&&s!=22&&s!=33){s=s.toString().split("").reduce((a,b)=>a+ +b,0)}return s}
-const data={1:{t:"リーダータイプ",love:"一途で情熱的。",work:"責任感があります。"},2:{t:"協調性があります",love:"思いやりがあります。",work:"サポート役が得意。"},3:{t:"創造力豊か",love:"明るく人気者。",work:"表現力を活かせます."},4:{t:"努力家",love:"誠実です。",work:"コツコツ型。"},5:{t:"自由人",love:"刺激を好みます。",work:"変化に強い。"},6:{t:"愛情深い",love:"家庭的。",work:"人を支える仕事向き。"},7:{t:"探究心",love:"慎重。",work:"研究職向き。"},8:{t:"行動力",love:"頼れる存在。",work:"経営センス。"},9:{t:"博愛精神",love:"優しい。",work:"奉仕精神。"}};
-function fortune(){const y=+year.value,m=+month.value,d=+day.value;if(!y||!m||!d){alert("入力してください");return;}const n=life(y,m,d);const r=data[n]||{t:"マスターナンバー",love:"特別な魅力",work:"才能豊か"};result.innerHTML=`<h2>運命数 ${n}</h2><img src="images/${n}.png" style="max-width:220px;width:100%;border-radius:16px"><p>${r.t}</p><h3>恋愛</h3><p>${r.love}</p><h3>仕事</h3><p>${r.work}</p>`}
+function fortune() {
+
+    let y = parseInt(document.getElementById("year").value);
+    let m = parseInt(document.getElementById("month").value);
+    let d = parseInt(document.getElementById("day").value);
+
+    if (!y || !m || !d) {
+        alert("生年月日を入力してください。");
+        return;
+    }
+
+    let total = ("" + y + m + d)
+        .split("")
+        .reduce((a, b) => a + Number(b), 0);
+
+    while (total > 9) {
+        total = total.toString().split("").reduce((a, b) => a + Number(b), 0);
+    }
+
+    const data = {
+
+1:{
+title:"運命数1",
+text:"あなたは生まれながらのリーダーです。自分の信じた道を進む強さがあります。周囲を引っ張る力があり、新しいことに挑戦する才能があります。一度決めたことは最後までやり抜く意志の強い人です。",
+love:"恋愛では一途で積極的です。好きな人を大切にし、頼られる存在になります。",
+work:"責任感が強く、リーダー職や経営者に向いています。",
+
+image:"images/1.png"
+},
+
+2:{
+title:"運命数2",
+text:"あなたは優しく思いやりのある人です。人との調和を大切にし、聞き上手でもあります。細かな気配りができ、周囲から信頼されます。縁をつなぐ役割を持っています。",
+love:"恋愛では相手を思いやる優しい恋人になります。安心できる関係を築きます。",
+work:"接客・教育・福祉など人と関わる仕事で才能を発揮します。",
+
+image:"images/2.png"
+},
+
+3:{
+title:"運命数3",
+text:"あなたは明るく創造力豊かな人です。楽しいことが大好きで、人を笑顔にする才能があります。芸術や表現力にも恵まれています。自由な発想で人生を楽しみます。",
+love:"恋愛では楽しく明るい関係を築きます。笑顔の絶えない恋愛になります。",
+work:"クリエイティブな仕事や芸能、デザインなどに向いています。",
+
+image:"images/3.png"
+},
+
+4:{
+title:"運命数4",
+text:"あなたは誠実で努力家です。何事もコツコツ積み上げる力があります。周囲から信頼され、責任感も強いタイプです。安定した人生を築く力があります。",
+love:"恋愛では誠実で浮気をしません。長く続く恋愛を好みます。",
+work:"公務員・事務・建築・管理職など堅実な仕事が向いています。",
+
+image:"images/4.png"
+},
+
+5:{
+title:"運命数5",
+text:"あなたは自由を愛する冒険家です。新しい経験を求め、変化を楽しめます。行動力があり、どんな環境にも適応できます。人生経験が豊富になる人です。",
+love:"恋愛では刺激を求めます。束縛されない恋愛が理想です。",
+work:"営業・旅行・イベント・企画など変化の多い仕事が向いています。",
+
+image:"images/5.png"
+},
+
+6:{
+title:"運命数6",
+text:"あなたは愛情深く面倒見の良い人です。家族や仲間を大切にします。困っている人を見ると放っておけません。癒しの力を持っています。",
+love:"恋愛では家庭的で愛情豊かです。安心できる恋人になります。",
+work:"保育・看護・美容・カウンセラーなど癒しの仕事が向いています。",
+
+image:"images/6.png"
+},
+
+7:{
+title:"運命数7",
+text:"あなたは知性と探究心を持っています。一人の時間を大切にし、物事を深く考えるタイプです。精神性が高く、学ぶことが好きです。冷静な判断力があります。",
+love:"恋愛では慎重ですが、一度好きになると一途です。",
+work:"研究・IT・分析・占いなど専門性の高い仕事が向いています。",
+
+image:"images/7.png"
+},
+
+8:{
+title:"運命数8",
+text:"あなたは成功運の強い人です。目標達成能力が高く、お金や仕事の運にも恵まれます。努力が結果につながりやすいタイプです。存在感があります。",
+love:"恋愛では頼りがいがあります。パートナーを守る力があります。",
+work:"経営・金融・管理職・営業などで成功しやすいです。",
+
+image:"images/8.png"
+},
+
+9:{
+title:"運命数9",
+text:"あなたは心優しく博愛精神にあふれています。誰にでも親切で、人を癒す力があります。直感力も高く、芸術的な感性があります。多くの人から慕われます。",
+love:"恋愛では相手を包み込むような愛情を注ぎます。",
+work:"福祉・芸術・医療・教育など人の役に立つ仕事が向いています。",
+
+image:"images/9.png"
+}
+
+};
+
+let r = data[total];
+
+document.getElementById("result").innerHTML = `
+<h2>🔮 ${r.title}</h2>
+
+<img src="${r.image}" style="max-width:260px;width:100%;border-radius:20px;box-shadow:0 0 20px rgba(255,255,255,.5);margin:20px 0;">
+
+<h3>🌟 性格</h3>
+<p>${r.text}</p>
+
+<h3>💕 恋愛での性格</h3>
+<p>${r.love}</p>
+
+<h3>💼 仕事での性格</h3>
+<p>${r.work}</p>
+`;
+
+}
