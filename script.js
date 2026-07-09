@@ -103,7 +103,16 @@ image:"images/9.png"
 };
 
 let r = data[total];
+const omikuji = [
+"🌸 大吉：今日は最高の運気です。新しいことに挑戦すると素敵な出来事がありそうです。",
+"🌸 中吉：穏やかな一日になりそうです。周りへの感謝を忘れないと運気アップ！",
+"🌸 小吉：小さな幸せが見つかる日です。笑顔を意識すると良いことがありそうです。",
+"🌸 吉：コツコツ努力すると成果につながります。",
+"🌸 末吉：焦らず自分のペースで進みましょう。明日に向けて運気が上昇します。",
+"🌸 凶：今日は無理をせず、ゆっくり休むことも大切です。"
+];
 
+const todayOmikuji = omikuji[Math.floor(Math.random() * omikuji.length)];
 document.getElementById("result").innerHTML = `
 <h2>🔮 ${r.title}</h2>
 
@@ -117,6 +126,9 @@ document.getElementById("result").innerHTML = `
 
 <h3>💼 仕事での性格</h3>
 <p>${r.work}</p>
+
+<h3>🌸 今日のおみくじ</h3>
+<p>${todayOmikuji}</p>
 `;
 
 }
