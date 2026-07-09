@@ -103,6 +103,8 @@ image:"images/9.png"
 };
 
 let r = data[total];
+console.log(total);
+console.log(r);
 const omikuji = [
 "🌸 大吉：今日は最高の運気です。新しいことに挑戦すると素敵な出来事がありそうです。",
 "🌸 中吉：穏やかな一日になりそうです。周りへの感謝を忘れないと運気アップ！",
