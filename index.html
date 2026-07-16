@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>無料数秘術占い</title>
 
-<title>ヒカリのオラクルカード</title>
+    <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Zen+Old+Mincho:wght@500&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="container">
-
-<img src="images/back.png" class="topImage">
-
-<button onclick="drawCard()">
-カードを引く
-</button>
-
-<h1 id="title"></h1>
-
-<img id="cardImage" class="resultCard">
-
-<p id="message"></p>
-
-<button onclick="drawCard()">
-もう一度引く
-</button>
-
+<div class="background">
+    <div class="stars"></div>
+    <div class="moon"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
 </div>
 
-<script src="script.js"></script>
+<div class="container">
+
+    <div class="card">
+
+        <h1>🔮 無料数秘術占い 🔮</h1>
+
+        <p class="sub">
+            生年月日を入力して<br>
+            あなたの運命数を診断します
+        </p>
+
+        <div class="input-area">
+
+            <input
+                type="number"
+                id="year"
+                placeholder="1990"
+                min="1900"
+                max="2100"
+            >
+
+            <span>年</span>
+
+            <input
+                type="number"
+                id="month"
+                placeholder="5"
+                min="1"
+                max="12"
+            >
+
+            <span>月</span>
+
+            <input
+                type="number"
+                id="day"
+                placeholder="15"
+                min="1"
+                max="31"
+            >
+
+            <span>日</span>
+
+        </div>
+
+        <button onclick="fortune()">
+            占う
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+    <script src="script.js"></script>
 
 </body>
-
 </html>
