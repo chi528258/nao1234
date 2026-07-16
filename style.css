@@ -1,6 +1,7 @@
-/* ===========================
-   光のオラクルカード
-=========================== */
+/* ===================================
+   無料数秘術占い
+   style.css①
+=================================== */
 
 *{
     margin:0;
@@ -9,211 +10,367 @@
 }
 
 body{
-
-    font-family:"Zen Old Mincho",serif;
-
-    background:url("images/sky.png") center center / cover no-repeat fixed;
-
+    font-family:'Zen Old Mincho',serif;
+    color:#fff;
+    overflow-x:hidden;
     min-height:100vh;
 
-    display:flex;
+    background:
+    linear-gradient(rgba(10,10,30,.45),rgba(20,10,40,.55)),
+    url("background.jpg");
 
-    justify-content:center;
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
 
-    align-items:center;
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+}
 
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-image:
+    radial-gradient(white 1px, transparent 1px);
+    background-size:60px 60px;
+    opacity:.5;
+    animation:twinkle 4s ease-in-out infinite;
+}
+
+.moon{
+    position:absolute;
+    top:60px;
+    right:80px;
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    background:#fff8dc;
+
+    box-shadow:
+    0 0 25px #fff,
+    0 0 60px #fff6aa,
+    0 0 90px #fff8dc;
+
+    animation:moonGlow 4s infinite alternate;
+}
+
+.cloud{
+    position:absolute;
+    background:rgba(255,255,255,.15);
+    border-radius:100px;
+    filter:blur(8px);
+}
+
+.cloud1{
+    width:260px;
+    height:70px;
+    top:120px;
+    left:-300px;
+    animation:cloudMove 55s linear infinite;
+}
+
+.cloud2{
+    width:340px;
+    height:90px;
+    top:260px;
+    left:-400px;
+    animation:cloudMove 80s linear infinite;
 }
 
 .container{
-
     width:100%;
-
-    max-width:500px;
-
-    text-align:center;
-
-    padding:30px 20px 60px;
-
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 15px;
 }
-
-/* タイトル画像 */
-
-.topImage{
-
-    width:320px;
-
-    max-width:90%;
-
-    display:block;
-
-    margin:0 auto 30px;
-
-    filter:drop-shadow(0 10px 20px rgba(0,0,0,.18));
-
-}
-
-/* カード裏 */
 
 .card{
+    width:100%;
+    max-width:650px;
 
-    width:300px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
 
-    max-width:90%;
+    border:1px solid rgba(255,255,255,.2);
 
-    border-radius:28px;
+    border-radius:25px;
 
-    display:block;
+    padding:40px 30px;
 
-    margin:0 auto;
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.4);
+}
+/* ===================================
+   style.css②
+=================================== */
 
-    box-shadow:0 15px 35px rgba(0,0,0,.18);
-
+h1{
+    text-align:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:48px;
+    font-weight:300;
+    letter-spacing:3px;
+    margin-bottom:15px;
+    color:#ffffff;
+    text-shadow:0 0 15px rgba(255,255,255,.8);
 }
 
-/* 結果カード */
-
-.resultCard{
-
-    width:220px;
-
-    max-width:80%;
-
-    border-radius:20px;
-
-    margin:30px auto;
-
-    display:block;
-
-    box-shadow:0 12px 25px rgba(0,0,0,.18);
-
+.sub{
+    text-align:center;
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:30px;
+    color:#f3ecff;
 }
 
-/* ボタン */
+.input-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.input-area input{
+    width:90px;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    text-align:center;
+    font-size:18px;
+    background:rgba(255,255,255,.2);
+    color:#fff;
+    outline:none;
+}
+
+.input-area input::placeholder{
+    color:#ddd;
+}
+
+.input-area span{
+    font-size:18px;
+}
 
 button{
-
-    margin:35px auto;
-
     display:block;
-
-    width:280px;
-
-    max-width:90%;
-
-    padding:18px;
+    width:220px;
+    margin:0 auto 35px;
+    padding:15px;
 
     border:none;
+    border-radius:40px;
 
-    border-radius:999px;
+    font-size:20px;
+    font-family:'Zen Old Mincho',serif;
 
-    color:white;
-
-    font-size:28px;
-
+    color:#fff;
     cursor:pointer;
 
-    background:linear-gradient(90deg,#ff8dc9,#8b6dff);
+    background:linear-gradient(135deg,#9d6cff,#d49cff);
 
-    box-shadow:0 8px 25px rgba(160,110,255,.35);
+    box-shadow:
+    0 0 20px rgba(180,120,255,.6);
 
     transition:.3s;
-
 }
 
 button:hover{
-
-    transform:translateY(-3px);
-
+    transform:scale(1.05);
+    box-shadow:
+    0 0 30px rgba(210,170,255,.9);
 }
 
-/* タイトル */
-
-#title{
-
-    margin-top:20px;
-
-    font-size:42px;
-
-    color:#7a4db9;
-
-    font-weight:400;
-
+#result{
+    margin-top:30px;
+    text-align:center;
+    animation:fadeIn 1s ease;
 }
 
-/* 飾り線 */
+#result h2{
+    font-size:34px;
+    margin-bottom:20px;
+    color:#ffeeb8;
+}
 
-#title::after{
+#result h3{
+    margin-top:25px;
+    margin-bottom:10px;
+    font-size:24px;
+    color:#ffdff8;
+}
 
-    content:"";
+#result p{
+    line-height:1.9;
+    font-size:18px;
+    color:#fff;
+}
+/* ===================================
+   style.css③
+=================================== */
 
+.result-image{
     display:block;
-
-    width:180px;
-
-    height:18px;
-
-    margin:15px auto 25px;
-
-    background:url("images/line.png") center/contain no-repeat;
-
+    width:280px;
+    max-width:90%;
+    margin:20px auto 30px;
+    border-radius:20px;
+    box-shadow:
+        0 0 20px rgba(255,255,255,.4),
+        0 0 40px rgba(200,180,255,.5);
+    animation:float 4s ease-in-out infinite;
 }
 
-/* メッセージ */
+@media (max-width:768px){
 
-#message{
+    .card{
+        padding:25px 20px;
+    }
 
-    font-size:28px;
+    h1{
+        font-size:34px;
+    }
 
-    line-height:1.8;
+    .sub{
+        font-size:16px;
+    }
 
-    color:#555;
+    .input-area{
+        gap:8px;
+    }
 
-    margin:20px auto 40px;
+    .input-area input{
+        width:70px;
+        font-size:16px;
+    }
 
-    width:90%;
+    button{
+        width:100%;
+        font-size:18px;
+    }
 
+    #result h2{
+        font-size:28px;
+    }
+
+    #result h3{
+        font-size:22px;
+    }
+
+    #result p{
+        font-size:16px;
+    }
+
+    .moon{
+        width:80px;
+        height:80px;
+        right:20px;
+        top:30px;
+    }
+
+    .result-image{
+        width:220px;
+    }
 }
 
-/* スマホ */
-
-@media(max-width:600px){
-
-.topImage{
-
-width:280px;
-
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.card{
+@keyframes float{
+    0%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+    100%{
+        transform:translateY(0);
+    }
+}
+/* ===================================
+   style.css④
+=================================== */
 
-width:260px;
-
+/* 星がキラキラ */
+@keyframes twinkle{
+    0%{
+        opacity:.25;
+    }
+    50%{
+        opacity:.7;
+    }
+    100%{
+        opacity:.25;
+    }
 }
 
-.resultCard{
+/* 月がふんわり光る */
+@keyframes moonGlow{
+    from{
+        box-shadow:
+            0 0 20px #ffffff,
+            0 0 40px #fff5b8,
+            0 0 70px #fff0a0;
+    }
 
-width:190px;
-
+    to{
+        box-shadow:
+            0 0 35px #ffffff,
+            0 0 70px #fff7d6,
+            0 0 110px #fff3c9;
+    }
 }
 
-button{
+/* 雲がゆっくり流れる */
+@keyframes cloudMove{
+    from{
+        transform:translateX(-350px);
+    }
 
-font-size:22px;
-
-width:250px;
-
+    to{
+        transform:translateX(calc(100vw + 500px));
+    }
 }
 
-#title{
-
-font-size:34px;
-
+/* スクロールを滑らかに */
+html{
+    scroll-behavior:smooth;
 }
 
-#message{
-
-font-size:22px;
-
+/* 入力欄フォーカス時 */
+.input-area input:focus{
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow:
+        0 0 12px rgba(255,255,255,.6);
 }
 
+/* ボタンを押したとき */
+button:active{
+    transform:scale(0.96);
+}
+
+/* 結果カード */
+#result{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:20px;
+    padding:25px;
+    margin-top:30px;
+    backdrop-filter:blur(10px);
 }
