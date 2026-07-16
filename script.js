@@ -1,136 +1,117 @@
-function fortune() {
+const cards = [
 
-    let y = parseInt(document.getElementById("year").value);
-    let m = parseInt(document.getElementById("month").value);
-    let d = parseInt(document.getElementById("day").value);
-
-    if (!y || !m || !d) {
-        alert("生年月日を入力してください。");
-        return;
-    }
-
-    let total = ("" + y + m + d)
-        .split("")
-        .reduce((a, b) => a + Number(b), 0);
-
-    while (total > 9) {
-        total = total.toString().split("").reduce((a, b) => a + Number(b), 0);
-    }
-
-    const data = {
-
-1:{
-title:"運命数1",
-text:"あなたは生まれながらのリーダーです。自分の信じた道を進む強さがあります。周囲を引っ張る力があり、新しいことに挑戦する才能があります。一度決めたことは最後までやり抜く意志の強い人です。",
-love:"恋愛では一途で積極的です。好きな人を大切にし、頼られる存在になります。",
-work:"責任感が強く、リーダー職や経営者に向いています。",
-
-image:"S__7610373.jpg"
+{
+title:"月の人魚",
+image:"images/S__8126478.jpg",
+message:"心を休ませる時間が、新しい流れを呼び込みます。焦らず、自分の心の声を大切にしてください。"
 },
 
-2:{
-title:"運命数2",
-text:"あなたは優しく思いやりのある人です。人との調和を大切にし、聞き上手でもあります。細かな気配りができ、周囲から信頼されます。縁をつなぐ役割を持っています。",
-love:"恋愛では相手を思いやる優しい恋人になります。安心できる関係を築きます。",
-work:"接客・教育・福祉など人と関わる仕事で才能を発揮します。",
-
-image:"S__7610374.jpg"
+{
+title:"星の願い",
+image:"images/S__8126479.jpg",
+message:"あなたの願いは宇宙へ届いています。信じて一歩ずつ進みましょう。"
 },
 
-3:{
-title:"運命数3",
-text:"あなたは明るく創造力豊かな人です。楽しいことが大好きで、人を笑顔にする才能があります。芸術や表現力にも恵まれています。自由な発想で人生を楽しみます。",
-love:"恋愛では楽しく明るい関係を築きます。笑顔の絶えない恋愛になります。",
-work:"クリエイティブな仕事や芸能、デザインなどに向いています。",
-
-image:"S__7610375.jpg"
+{
+title:"花の妖精",
+image:"images/S__8126480.jpg",
+message:"優しさが幸運を運んできます。笑顔が素敵な一日になります。"
 },
 
-4:{
-title:"運命数4",
-text:"あなたは誠実で努力家です。何事もコツコツ積み上げる力があります。周囲から信頼され、責任感も強いタイプです。安定した人生を築く力があります。",
-love:"恋愛では誠実で浮気をしません。長く続く恋愛を好みます。",
-work:"公務員・事務・建築・管理職など堅実な仕事が向いています。",
-
-image:"S__7610376.jpg"
+{
+title:"ユニコーン",
+image:"images/S__8126481.jpg",
+message:"奇跡はもうすぐあなたの目の前に現れます。"
 },
 
-5:{
-title:"運命数5",
-text:"あなたは自由を愛する冒険家です。新しい経験を求め、変化を楽しめます。行動力があり、どんな環境にも適応できます。人生経験が豊富になる人です。",
-love:"恋愛では刺激を求めます。束縛されない恋愛が理想です。",
-work:"営業・旅行・イベント・企画など変化の多い仕事が向いています。",
-
-image:"S__7610377.jpg"
+{
+title:"星くじら",
+image:"images/S__8126482.jpg",
+message:"大きな流れに身を任せることで、新しい世界が広がります。"
 },
 
-6:{
-title:"運命数6",
-text:"あなたは愛情深く面倒見の良い人です。家族や仲間を大切にします。困っている人を見ると放っておけません。癒しの力を持っています。",
-love:"恋愛では家庭的で愛情豊かです。安心できる恋人になります。",
-work:"保育・看護・美容・カウンセラーなど癒しの仕事が向いています。",
-
-image:"S__7610378.jpg"
+{
+title:"蝶の精霊",
+image:"images/S__8126483.jpg",
+message:"変化を恐れず一歩踏み出しましょう。新しい自分に出会えます。"
 },
 
-7:{
-title:"運命数7",
-text:"あなたは知性と探究心を持っています。一人の時間を大切にし、物事を深く考えるタイプです。精神性が高く、学ぶことが好きです。冷静な判断力があります。",
-love:"恋愛では慎重ですが、一度好きになると一途です。",
-work:"研究・IT・分析・占いなど専門性の高い仕事が向いています。",
-
-image:"S__7610379.jpg"
+{
+title:"白鳥の湖",
+image:"images/S__8126484.jpg",
+message:"心穏やかな時間があなたを癒してくれます。"
 },
 
-8:{
-title:"運命数8",
-text:"あなたは成功運の強い人です。目標達成能力が高く、お金や仕事の運にも恵まれます。努力が結果につながりやすいタイプです。存在感があります。",
-love:"恋愛では頼りがいがあります。パートナーを守る力があります。",
-work:"経営・金融・管理職・営業などで成功しやすいです。",
-
-image:"S__7610380.jpg"
+{
+title:"愛のバラ",
+image:"images/S__8126485.jpg",
+message:"愛を受け取る準備ができています。優しさを信じてください。"
 },
 
-9:{
-title:"運命数9",
-text:"あなたは心優しく博愛精神にあふれています。誰にでも親切で、人を癒す力があります。直感力も高く、芸術的な感性があります。多くの人から慕われます。",
-love:"恋愛では相手を包み込むような愛情を注ぎます。",
-work:"福祉・芸術・医療・教育など人の役に立つ仕事が向いています。",
+{
+title:"虹の橋",
+image:"images/S__8126486.jpg",
+message:"希望へ続く道が開かれています。"
+},
 
-image:"S__7610381.jpg"
+{
+title:"ドルフィン",
+image:"images/S__8126487.jpg",
+message:"楽しむ気持ちが幸運を引き寄せます。"
+},
+
+{
+title:"天使の導き",
+image:"images/S__8126488.jpg",
+message:"見えない存在があなたを守っています。安心してください。"
+},
+
+{
+title:"月の鹿",
+image:"images/S__8126489.jpg",
+message:"静かな時間があなたの直感を育てます。"
+},
+
+{
+title:"平和の鳩",
+image:"images/S__8126490.jpg",
+message:"争いよりも調和を選ぶことで運気が上昇します。"
+},
+
+{
+title:"三日月の魔法",
+image:"images/S__8126491.jpg",
+message:"新しい始まりにぴったりなタイミングです。"
+},
+
+{
+title:"水晶の洞窟",
+image:"images/S__8126492.jpg",
+message:"本当の答えはあなたの心の中にあります。"
+},
+
+{
+title:"宇宙の扉",
+image:"images/S__8126493.jpg",
+message:"新しい可能性が開かれています。勇気を持って進みましょう。"
+},
+
+{
+title:"希望の光",
+image:"images/S__8126494.jpg",
+message:"最後には必ず光が差し込みます。希望を忘れないでください。"
 }
 
-};
-
-let r = data[total];
-console.log(total);
-console.log(r);
-const omikuji = [
-"🌸 大吉：今日は最高の運気です。新しいことに挑戦すると素敵な出来事がありそうです。",
-"🌸 中吉：穏やかな一日になりそうです。周りへの感謝を忘れないと運気アップ！",
-"🌸 小吉：小さな幸せが見つかる日です。笑顔を意識すると良いことがありそうです。",
-"🌸 吉：コツコツ努力すると成果につながります。",
-"🌸 末吉：焦らず自分のペースで進みましょう。明日に向けて運気が上昇します。",
-"🌸 凶：今日は無理をせず、ゆっくり休むことも大切です。"
 ];
 
-const todayOmikuji = omikuji[Math.floor(Math.random() * omikuji.length)];
-document.getElementById("result").innerHTML = `
-<h2>🔮 ${r.title}</h2>
+function drawCard(){
 
-<img src="${r.image}" style="max-width:260px;width:100%;border-radius:20px;box-shadow:0 0 20px rgba(255,255,255,.5);margin:20px 0;">
+const card = cards[Math.floor(Math.random()*cards.length)];
 
-<h3>🌟 性格</h3>
-<p>${r.text}</p>
+document.getElementById("title").textContent = card.title;
 
-<h3>💕 恋愛での性格</h3>
-<p>${r.love}</p>
+document.getElementById("cardImage").src = card.image;
 
-<h3>💼 仕事での性格</h3>
-<p>${r.work}</p>
-
-<h3>🌸 今日のおみくじ</h3>
-<p>${todayOmikuji}</p>
-`;
+document.getElementById("message").textContent = card.message;
 
 }
