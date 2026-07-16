@@ -1,54 +1,42 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>無料数秘術占い</title>
+<title>ヒカリのオラクルカード</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Zen+Old+Mincho:wght@500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-<h1>🔮 無料数秘術占い 🔮</h1>
+<img src="images/back.png" class="topImage">
 
-<p>あなたの運命数を診断します</p>
-
-<div class="row">
-<input type="number" id="year" placeholder="1990">
-<span>年</span>
-</div>
-
-<div class="row">
-<input type="number" id="month" placeholder="5">
-<span>月</span>
-</div>
-
-<div class="row">
-<input type="number" id="day" placeholder="15">
-<span>日</span>
-</div>
-
-<button onclick="fortune()">
-占う
+<button onclick="drawCard()">
+カードを引く
 </button>
 
-<div id="result">
-ここに診断結果が表示されます。
-</div>
+<h1 id="title"></h1>
+
+<img id="cardImage" class="resultCard">
+
+<p id="message"></p>
+
+<button onclick="drawCard()">
+もう一度引く
+</button>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
